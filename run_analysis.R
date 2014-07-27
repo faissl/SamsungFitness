@@ -52,12 +52,13 @@ run_Analysis <- function(){
   trainActivityData = cbind(subject = trainSubjectID$subject, trainData)
   splitTrainData = split(trainActivityData, trainActivityData$subject)
   meanTrainData = lapply(splitTrainData[[1]],mean)
+  splitTrainBlock = as.data.frame(splitTrainData[[1]])
   
   
   ## Bind the activity levels to their associated train/test data sets.
   testActivityData = cbind(activity = testActivityLabels$activity, testData)
 
-  
+  write.table(splitTrainBlock,file="cleanDataAssignment.txt")
   
   
   
