@@ -29,15 +29,38 @@ run_Analysis <- function(){
   relevantFeatNames = featureName[relevantFeatInd]
   relevantFeatNames = gsub("\\(\\)","",relevantFeatNames)
   
-  ## Get the Test and Training Activity Levels vectors
+  ## Get the Test and Training Activity Levels vectors associated with the test and training data
   testActivityLabels = as.vector(read.table("./dataset/test/y_test.txt"))
   trainActivityLabels = as.vector(read.table("./dataset/train/y_train.txt"))
+  trainSubjectID = read.table("./dataset/train/subject_train.txt")
+  names(testActivityLabels)[1] = "activity"
+  names(trainActivityLabels)[1] = "activity"
+  names(trainSubjectID)[1] = "subject"
+  trainSubjectID$subject = as.factor(trainSubjectID$subject)
 
   
   ## Read in the Test and Training data 
   trainRaw = read.table("./dataset/train/X_train.txt", header=FALSE, stringsAsFactors=FALSE)
   str(trainRaw)
   testRaw = read.table("./dataset/test/X_test.txt", header=FALSE, stringsAsFactors=FALSE)
+  trainData = trainRaw[,relevantFeatInd]
+  testData = testRaw[,relevantFeatInd]
+  names(trainData) = relevantFeatNames
+  names(testData) = relevantFeatNames
+  
+  ## Bind the subject IDs to the training data set.
+  trainActivityData = cbind(subject = trainSubjectID$subject, trainData)
+  splitTrainData = split(trainActivityData, trainActivityData$subject)
+  meanTrainData = lapply(splitTrainData[[1]],mean)
+  
+  
+  ## Bind the activity levels to their associated train/test data sets.
+  testActivityData = cbind(activity = testActivityLabels$activity, testData)
+
+  
+  
+  
+  
   
  
   

@@ -2,7 +2,21 @@ FILE: CodeBook.md
 DESCRIPTION: This explains the data items in the tidy data set that is produced by the Samsung Fitness R script, run_analysis.R
              Only the mean and standard deviations were taken from the test and training raw data sets.
 
+NOTE: Well, gosh dangety, dang. This is what happens when you're trying to get your John Muir Trail Food Resupply Bucket
+      sent out on the same weekend as the assignment. Gersh Darn. I'll have it done by end of day, but here's a partial. 
+
+
 DATA CODE BOOK:
+
+	Subject: Training subject's id; value from 1-30.
+
+	Activity ID/Activity Name: Type of activity being measured. It has both an id and name associated with it. 
+	    1 = WALKING
+	    2 = WALKING_UPSTAIRS
+	    3 = WALKING_DOWNSTAIRS
+	    4 = SITTING
+	    5 = STANDING
+	    6 = LAYING
 
     Body Acceleration: Body accelartion during activity. Mean and standard deviations are calculated for each X,Y, and Z
         NOTE: Values proceeded by f indicate "frequency domain signals"
